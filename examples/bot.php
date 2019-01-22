@@ -69,6 +69,17 @@ try {
                     ->setText('Nice picture ;-)')
             );
         })
+        
+        ->onLocation(function ($event) use ($bot, $botSender, $log) {
+            $log->info('onPicture ' . var_export($event, true));
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText('Where are your?')
+            );
+        })
+
         ->on(function ($event) {
             return true; // match all
         }, function ($event) use ($log) {
