@@ -71,7 +71,8 @@ try {
         })
         
         ->onLocation(function ($event) use ($bot, $botSender, $log) {
-            $log->info('onPicture ' . var_export($event, true));
+            $log->info('onLocation ' . var_export($event, true));
+            $log->info('my ' . var_export($event->location, true));
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
