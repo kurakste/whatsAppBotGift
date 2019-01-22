@@ -143,6 +143,24 @@ class Bot
 
         return $this;
     }
+    
+    /**
+     * Register location message handler
+     *
+     * @param Closure $handler event handler
+     * @return \Viber\Bot
+     */
+    public function onLocation(\Closure $handler)
+    {
+        $this->managers[] = new Manager(function (Event $event) {
+            return (
+                $event instanceof \Viber\Api\Event\Message
+                && $event->getMessage() instanceof \Viber\Api\Message\Location
+            );
+        }, $handler);
+
+        return $this;
+    }
 
     /**
      * Get signature header
