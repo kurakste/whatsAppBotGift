@@ -79,6 +79,8 @@ try {
 
             $ruler = new Ruler;
             $dist = $ruler->calculateTheDistance($lat, $lon, 48.852220, 2.356677);
+            $log->info('dist: '. $dist, true);
+
             try {
                 $log->info('dist '. $dist);
                 $bot->getClient()->sendMessage(
@@ -88,7 +90,7 @@ try {
                         ->setText("Привет! Тебе до парижа еще {$dist} фигачить. Давай, крути педали)")
                 );
             } catch(Exeption $e)  {
-                $log->info('catch '. $e);
+                $log->info('catch '. $e, true);
             }
         
         })
