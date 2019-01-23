@@ -77,12 +77,13 @@ try {
             $lat = $event->getMessage()->getLocation()['lat'];
             $lon = $event->getMessage()->getLocation()['lon'];
 
-            $ruler = new Ruler;
-            $dist = $ruler->calculateTheDistance($lat, $lon, 48.852220, 2.356677);
-            $log->info('dist: '. $dist, true);
 
             try {
-                $log->info('dist '. $dist);
+                $ruler = new Ruler;
+                $dist = $ruler->calculateTheDistance($lat, $lon, 48.852220, 2.356677);
+
+                $log->info('dist: '. $dist, true);
+
                 $bot->getClient()->sendMessage(
                     (new \Viber\Api\Message\Text())
                         ->setSender($botSender)
