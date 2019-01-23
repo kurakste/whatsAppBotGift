@@ -1,6 +1,6 @@
 <?php
 
-namespace Blogica\Roler;
+namespace Viber\Blogica;
 
 define('EARTH_RADIUS', 6372795);
 
