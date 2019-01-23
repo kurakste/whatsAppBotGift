@@ -79,11 +79,12 @@ try {
 
             $ruler = new Ruler;
             $dist = $ruler->calculateTheDistance($lat, $lon, 48.852220, 2.356677);
+            $log->info('dist '. $dist);
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setText(`Привет! Тебе до парижа еще {$dist} фигачить. Давай, крути педали)`)
+                    ->setText("Привет! Тебе до парижа еще {$dist} фигачить. Давай, крути педали)")
             );
         })
 
