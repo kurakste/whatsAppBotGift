@@ -87,9 +87,10 @@ try {
                         ->setReceiver($event->getSender()->getId())
                         ->setText("Привет! Тебе до парижа еще {$dist} фигачить. Давай, крути педали)")
                 );
-            } catch ($e) {
+            } catch(Exeption $e)  {
                 $log->info('catch '. $e);
             }
+        
         })
 
         ->on(function ($event) {
