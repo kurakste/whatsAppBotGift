@@ -72,12 +72,18 @@ try {
         
         ->onLocation(function ($event) use ($bot, $botSender, $log) {
             $log->info('onLocation ' . var_export($event, true));
-            $log->info('my ' . var_export($event->getEvent(), true));
+            $log->info('my ' . var_export($event->getMessage()->getLocation()['lat'], true));
+            $log->info('my ' . var_export($event->getMessage()->getLocation()['lon'], true));
+            $lat = $event->getMessage()->getLocation()['lat'];
+            $lon = $event->getMessage()->getLocation()['lon'];
+
+            $ruler = new Ruler;
+            $dist = $ruler->calculateTheDistance($lat, $lon, 48.852220, 2.356677);
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setText('Where are your?')
+                    ->setText(`Привет! Тебе до парижа еще {$dist} фигачить. Давай, крути педали)`)
             );
         })
 
