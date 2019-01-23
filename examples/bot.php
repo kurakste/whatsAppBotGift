@@ -28,6 +28,8 @@ $botSender = new Sender([
 // log bot interaction
 $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
+$collector = new Loger('collector');
+$collector->pushHandler(new StreamHandler('/tmp/collector.log'));
 
 try {
     // create bot instance
@@ -44,6 +46,8 @@ try {
         ->onText('|whois .*|si', function ($event) use ($bot, $botSender, $log) {
             $log->info('onText whois ' . var_export($event, true));
             // match by template, for example "whois Bogdaan"
+
+            $collector->info('client: '.$bot->getClient());
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
