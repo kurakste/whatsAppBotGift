@@ -87,7 +87,7 @@ try {
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setText("Привет! Тебе до парижа еще {$dist} фигачить. Давай, крути педали)")
+                    ->setText("Привет! Тебе до парижа еще {$dist} km фигачить. Давай, крути педали)")
 
             );
         })

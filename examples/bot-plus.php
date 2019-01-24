@@ -28,6 +28,16 @@ $botSender = new Sender([
 $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
+$buttons = [];
+for ($i = 0; $i <= 8; $i++) {
+    $buttons[] =
+        (new \Viber\Api\Keyboard\Button())
+            ->setColumns(1)
+            ->setActionType('reply')
+            ->setActionBody('k' . $i)
+            ->setText('k' . $i);
+}
+
 try {
     // create bot instance
     $bot = new Bot(['token' => $apiKey]);
@@ -35,15 +45,6 @@ try {
         // first interaction with bot - return "welcome message"
         ->onConversation(function ($event) use ($bot, $botSender, $log) {
             $log->info('onConversation handler');
-            $buttons = [];
-            for ($i = 0; $i <= 8; $i++) {
-                $buttons[] =
-                    (new \Viber\Api\Keyboard\Button())
-                        ->setColumns(1)
-                        ->setActionType('reply')
-                        ->setActionBody('k' . $i)
-                        ->setText('k' . $i);
-            }
             return (new \Viber\Api\Message\Text())
                 ->setSender($botSender)
                 ->setText("Hi, you can see some demo: send 'k1' or 'k2' etc.")
@@ -69,6 +70,10 @@ try {
                     ->setSender($botSender)
                     ->setReceiver($receiverId)
                     ->setText('you press the button')
+                    ->setKeyboard(
+                        (new \Viber\Api\Keyboard())
+                            ->setButtons($buttons)
+                    )
             );
         })
         ->onText('|k\d+|is', function ($event) use ($bot, $botSender, $log) {
