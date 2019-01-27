@@ -62,12 +62,12 @@ try {
                     ->setText('Thanks for subscription!')
             );
         })
-        ->onText('|btn|s', function ($event) use ($bot, $botSender, $log) {
+        ->onText('|btn-click|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('click on button');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
-                    ->setReceiver($receiverId)
+                    ->setReceiver($event->getSender()->getId())
                     ->setText('you press the button')
                     ->setKeyboard(
                         (new \Viber\Api\Keyboard())
