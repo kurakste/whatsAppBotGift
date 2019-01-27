@@ -43,7 +43,7 @@ try {
     $bot = new Bot(['token' => $apiKey]);
     $bot
         // first interaction with bot - return "welcome message"
-        ->onConversation(function ($event) use ($bot, $botSender, $log) {
+        ->onConversation(function ($event) use ($bot, $botSender, $log, $buttons) {
             $log->info('onConversation handler');
             return (new \Viber\Api\Message\Text())
                 ->setSender($botSender)
