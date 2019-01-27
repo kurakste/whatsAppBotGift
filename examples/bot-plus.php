@@ -64,16 +64,16 @@ try {
         })
         ->onText('|btn|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('click on button');
-            // $bot->getClient()->sendMessage(
-            //     (new \Viber\Api\Message\Text())
-            //         ->setSender($botSender)
-            //         ->setReceiver($receiverId)
-            //         ->setText('you press the button')
-            //         ->setKeyboard(
-            //             (new \Viber\Api\Keyboard())
-            //                 ->setButtons($buttons)
-            //         )
-            // );
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setSender($botSender)
+                    ->setReceiver($receiverId)
+                    ->setText('you press the button')
+                    ->setKeyboard(
+                        (new \Viber\Api\Keyboard())
+                            ->setButtons($buttons)
+                    )
+            );
         })
         ->onText('|phone|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('phone');
