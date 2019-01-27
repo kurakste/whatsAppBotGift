@@ -76,6 +76,26 @@ try {
                     )
             );
         })
+        ->onText('|phone|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('phone');
+            $receiverId = $event->getSender()->getId();
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                ->setSender($botSender)
+                ->setReceiver($event->getSender()->getId())
+                ->setMinApiVersion(3)
+                ->setText("We need your phone number")
+                ->setKeyboard(
+                (new \Viber\Api\Keyboard())
+                    ->setButtons([
+                        (new \Viber\Api\Keyboard\Button())
+                                ->setActionType('share-phone')
+                                ->setActionBody('reply')
+                                ->setText('Send phone number')
+                            ])
+                )
+            );
+        })
         ->onText('|k\d+|is', function ($event) use ($bot, $botSender, $log) {
             $caseNumber = (int)preg_replace('|[^0-9]|s', '', $event->getMessage()->getText());
             $log->info('onText demo handler #' . $caseNumber);
