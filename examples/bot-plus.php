@@ -70,10 +70,10 @@ try {
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
                     ->setText('you press the button')
-                    ->setKeyboard(
-                        (new \Viber\Api\Keyboard())
-                            ->setButtons($buttons)
-                    )
+                    // ->setKeyboard(
+                    //     (new \Viber\Api\Keyboard())
+                    //         ->setButtons($buttons)
+                    // )
             );
         })
         ->onText('|phone|s', function ($event) use ($bot, $botSender, $log) {
