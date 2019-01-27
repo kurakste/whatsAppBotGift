@@ -64,6 +64,7 @@ try {
         })
         ->onText('|btn-click|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('click on button');
+            $log->info('Sender: '.$event->getSender()->getId());
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
