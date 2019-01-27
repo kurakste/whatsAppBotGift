@@ -74,6 +74,7 @@ try {
                             ->setButtons([
                                 (new \Viber\Api\Keyboard\Button())
                                     ->setBgColor('#8074d6')
+                                    ->setColumns(2)
                                     ->setTextSize('small')
                                     ->setTextHAlign('right')
                                     ->setActionType('reply')
