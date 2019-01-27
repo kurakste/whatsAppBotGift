@@ -54,7 +54,7 @@ try {
             );
         })
         ->onText('|.*|s', function ($event) use ($bot, $botSender, $log) {
-            $log->info('onText ' . var_export($event, true));
+            $log->info('onText '.$event->getSender()->getId());
             // .* - match any symbols
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
