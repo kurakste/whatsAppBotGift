@@ -63,39 +63,40 @@ try {
             );
         })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
-                    $client->sendMessage(
-                        (new \Viber\Api\Message\Text())
-                            ->setSender($botSender)
-                            ->setReceiver($receiverId)
-                            ->setText('More buttons and styles')
-                            ->setKeyboard(
-                                (new \Viber\Api\Keyboard())
-                                    ->setButtons([
-                                        (new \Viber\Api\Keyboard\Button())
-                                            ->setBgColor('#8074d6')
-                                            ->setTextSize('small')
-                                            ->setTextHAlign('right')
-                                            ->setActionType('reply')
-                                            ->setActionBody('btn-click')
-                                            ->setText('Button 1'),
+            $log->info('menu methos');
+            $client->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText('More buttons and styles')
+                    ->setKeyboard(
+                        (new \Viber\Api\Keyboard())
+                            ->setButtons([
+                                (new \Viber\Api\Keyboard\Button())
+                                    ->setBgColor('#8074d6')
+                                    ->setTextSize('small')
+                                    ->setTextHAlign('right')
+                                    ->setActionType('reply')
+                                    ->setActionBody('btn-click')
+                                    ->setText('Button 1'),
 
-                                        (new \Viber\Api\Keyboard\Button())
-                                            ->setBgColor('#2fa4e7')
-                                            ->setTextHAlign('center')
-                                            ->setActionType('reply')
-                                            ->setActionBody('btn-click')
-                                            ->setText('Button 2'),
+                                (new \Viber\Api\Keyboard\Button())
+                                    ->setBgColor('#2fa4e7')
+                                    ->setTextHAlign('center')
+                                    ->setActionType('reply')
+                                    ->setActionBody('btn-click')
+                                    ->setText('Button 2'),
 
-                                        (new \Viber\Api\Keyboard\Button())
-                                            ->setBgColor('#555555')
-                                            ->setTextSize('large')
-                                            ->setTextHAlign('left')
-                                            ->setActionType('reply')
-                                            ->setActionBody('btn-click')
-                                            ->setText('Button 3'),
-                                    ])
-                            )
-                    );
+                                (new \Viber\Api\Keyboard\Button())
+                                    ->setBgColor('#555555')
+                                    ->setTextSize('large')
+                                    ->setTextHAlign('left')
+                                    ->setActionType('reply')
+                                    ->setActionBody('btn-click')
+                                    ->setText('Button 3'),
+                            ])
+                    )
+            );
         })
         ->onText('|btn-click|s', function ($event) use ($bot, $botSender, $log, $buttons) {
             $log->info('click on button');
