@@ -63,7 +63,7 @@ try {
             );
         })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
-            $log->info('menu methos');
+            $log->info('menu method');
             $log->info('tracking data:'.$event->getMessage()->getTrackingData());
 
             $bot->getClient()->sendMessage(
