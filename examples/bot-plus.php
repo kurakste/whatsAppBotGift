@@ -82,6 +82,9 @@ try {
                 $log->info('counter:'.$data['counter']);
             }
 
+            $data['counter'] = ++$data['counter'];
+            $log->info('counter:'.$data['counter']);
+
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
