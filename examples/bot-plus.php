@@ -78,7 +78,7 @@ try {
                 $data = [];
                 $data['conuter'] = 0;
             } else {
-                $data['counter'] = $data['counter']++;
+                $data['counter'] = ++$data['counter'];
             }
 
             $bot->getClient()->sendMessage(
