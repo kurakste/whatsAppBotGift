@@ -69,7 +69,7 @@ try {
             $log->info('message:'.$event->getMessage()->getText());
 
             try {
-                $data = json_encode($event->getMessage()->getTrackingData(), JSON_THROW_ON_ERROR);
+                $data = json_decode($event->getMessage()->getTrackingData());
             } catch (JsonException $e) {
                 $data = [];
                 $data['counter'] = 0;
