@@ -71,7 +71,7 @@ try {
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setTrackingData('tr_data')
+                    ->setTrackingData('tr_data_1')
                     ->setText('Hi from menu')
                   //  ->setTrackingData('New tracking data')
                     ->setKeyboard(
