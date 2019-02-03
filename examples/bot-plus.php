@@ -74,7 +74,7 @@ try {
                 $data = [];
                 $data['counter'] = 0;
             }
-            if (!is_array($data) || !isset($data)) {
+            if (!is_array($data) || !isset($data['counter'])) {
                 $data = [];
                 $data['conuter'] = 0;
             } else {
