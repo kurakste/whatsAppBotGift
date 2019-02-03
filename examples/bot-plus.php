@@ -67,7 +67,13 @@ try {
             $log->info('menu method');
             $log->info('tracking data:'.$event->getMessage()->getTrackingData());
             $log->info('message:'.$event->getMessage()->getText());
-            $data = json_decode($event->getMessage()->getTrackingData(),$options = JSON_ERROR_NONE);
+
+            try {
+                $data = json_encode($event->getMessage()->getTrackingData(), JSON_THROW_ON_ERROR);
+            } catch (JsonException $e) {
+                $data = [];
+                $data['counter'] = 0;
+            }
             if (!is_array($data) || !isset($data)) {
                 $data = [];
                 $data['conuter'] = 0;
