@@ -67,7 +67,7 @@ try {
             $log->info('menu method');
             $log->info('tracking data:'.$event->getMessage()->getTrackingData());
             $log->info('message:'.$event->getMessage()->getText());
-            $data = json_decode($event->getMessage()->getTrackingData(),$options = 'JSON_ERROR_NONE');
+            $data = json_decode($event->getMessage()->getTrackingData(),$options = JSON_ERROR_NONE);
             if (!is_array($data) || !isset($data)) {
                 $data = [];
                 $data['conuter'] = 0;
