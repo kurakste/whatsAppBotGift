@@ -64,7 +64,7 @@ try {
         })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('menu methos');
-            //$log->info('tracking data:'.$event->getTrackingData());
+            $log->info('tracking data:'.$event->getMessage()->getTrackingData());
 
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
