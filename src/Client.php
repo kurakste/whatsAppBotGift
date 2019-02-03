@@ -3,6 +3,7 @@
 namespace Viber;
 
 use Viber\Api\Message;
+use Viber\Api\Bmessage;
 use Viber\Api\Event\Type;
 use Viber\Api\Exception\ApiException;
 
@@ -86,7 +87,6 @@ class Client
                 ],
                 'json' => $data
             ]);
-            //vd($response->getBody());
             return \Viber\Api\Response::create($response);
         } catch (\RuntimeException $e) {
             throw new ApiException($e->getMessage(), $e->getCode(), $e);
@@ -175,5 +175,16 @@ class Client
     public function sendMessage(Message $message)
     {
         return $this->call('send_message', $message->toApiArray());
+    }
+
+    /**
+     * Send broadcast message to Viber users who subscribe to the PA.
+     *
+     * @param  \Viber\Api\Message $message
+     * @return \Viber\Api\Response
+     */
+    public function sendBroadcast(Bmessage $message)
+    {
+        return $this->call('broadcast_message', $message->toApiArray());
     }
 }
