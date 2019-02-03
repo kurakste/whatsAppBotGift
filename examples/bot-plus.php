@@ -14,6 +14,7 @@ use Viber\Bot;
 use Viber\Api\Sender;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use function GuzzleHttp\json_decode;
 
 $config = require('./config.php');
 $apiKey = $config['apiKey'];
@@ -66,14 +67,20 @@ try {
             $log->info('menu method');
             $log->info('tracking data:'.$event->getMessage()->getTrackingData());
             $log->info('message:'.$event->getMessage()->getText());
+            $data = json_decode($event->getMessage()->getTrackingData());
+            if (!is_array($data) || !isset($data)) {
+                $data = [];
+                $data['conuter'] = 0;
+            } else {
+                $data['counter'] = $data['counter']++;
+            }
 
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setTrackingData('tr_data_1')
+                    ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
-                  //  ->setTrackingData('New tracking data')
                     ->setKeyboard(
                         (new \Viber\Api\Keyboard())
                             ->setButtons([
