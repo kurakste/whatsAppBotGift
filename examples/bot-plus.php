@@ -74,16 +74,13 @@ try {
                 $data = [];
                 $data['counter'] = 0;
             }
-            if (!is_array($data) || !isset($data['counter'])) {
-                $data = [];
-                $data['conuter'] = 0;
-            } else {
-                $data['counter'] = ++$data['counter'];
-                $log->info('counter:'.$data['counter']);
-            }
 
+            if (!isset($data['counter'])) {
+                $data = [];
+                $data['counter'] = 0;
+            }
             $data['counter'] = ++$data['counter'];
-            $log->info('counter:'.$data['counter']);
+            $log->info('counter!:'.$data['counter']);
 
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
