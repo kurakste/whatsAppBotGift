@@ -14,6 +14,8 @@ function packFileMessage() {
     $uploadfiile = $uploaddir.$_FILES['payload']['name'];
     if (move_uploaded_file($_FILES['payload']['tmp_name'], $uploadfiile)) {
         $file = $_SERVER['HTTP_HOST'].'/examples/uploads/'.$_FILES['payload']['name'];
+        echo $file;
+        die;
         $size = $_FILES['payload']['size'];
         $message = (new \Viber\Api\Message\File())
             ->setMedia($file)
