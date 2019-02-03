@@ -81,7 +81,7 @@ try {
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setTrackingData(json_encode($data))
+                    ->setTrackingData(json_encode(['counter'=>1]))
                     ->setText('Hi from menu')
                     ->setKeyboard(
                         (new \Viber\Api\Keyboard())
