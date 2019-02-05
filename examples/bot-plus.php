@@ -27,32 +27,9 @@ $botSender = new Sender([
 $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
-// require_once('./keyboards/testKeyboard.php');
+$kbrd = require_once('./keyboards/testKeyboard.php');
 // echo('hi');
 // var_dump($btns);die;
-$kbrd = [
-        (new \Viber\Api\Keyboard\Button()) ->setBgColor('#8074d6')
-            ->setTextSize('small')
-            ->setTextHAlign('right')
-            ->setActionType('reply')
-            ->setActionBody('btn-click')
-            ->setText('Button 1'),
-
-        (new \Viber\Api\Keyboard\Button())
-            ->setBgColor('#2fa4e7')
-            ->setTextHAlign('center')
-            ->setActionType('reply')
-            ->setActionBody('btn-click')
-            ->setText('Button 2'),
-
-        (new \Viber\Api\Keyboard\Button())
-            ->setBgColor('#555555')
-            ->setTextSize('large')
-            ->setTextHAlign('left')
-            ->setActionType('reply')
-            ->setActionBody('btn-click')
-            ->setText('Button 3'),
-];
 
 try {
     // create bot instance

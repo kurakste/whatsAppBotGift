@@ -1,5 +1,4 @@
 <?php
-$btns = 
         [
             (new \Viber\Api\Keyboard\Button())
                 ->setBgColor('#8074d6')
