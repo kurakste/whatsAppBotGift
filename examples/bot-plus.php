@@ -28,15 +28,7 @@ $botSender = new Sender([
 $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
-$buttons = [];
-for ($i = 0; $i <= 8; $i++) {
-    $buttons[] =
-        (new \Viber\Api\Keyboard\Button())
-            ->setColumns(1)
-            ->setActionType('reply')
-            ->setActionBody('k' . $i)
-            ->setText('k' . $i);
-}
+$testKb = require_once('./keyboards/testKeyboard.php');
 
 try {
     // create bot instance
@@ -108,34 +100,7 @@ try {
                     ->setReceiver($event->getSender()->getId())
                     ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
-                    ->setKeyboard(
-                        (new \Viber\Api\Keyboard())
-                            ->setButtons([
-                                (new \Viber\Api\Keyboard\Button())
-                                    ->setBgColor('#8074d6')
-                                    ->setColumns(3)
-                                    ->setTextSize('small')
-                                    ->setTextHAlign('right')
-                                    ->setActionType('reply')
-                                    ->setActionBody('menu-sub-1')
-                                    ->setText('subMenu 1'),
-
-                                (new \Viber\Api\Keyboard\Button())
-                                    ->setBgColor('#2fa4e7')
-                                    ->setColumns(3)
-                                    ->setTextHAlign('center')
-                                    ->setActionType('reply')
-                                    ->setActionBody('menu-sub-2')
-                                    ->setText('subMenu 2'),
-                                (new \Viber\Api\Keyboard\Button())
-                                    ->setBgColor('#2fa4e7')
-                                    ->setColumns(6)
-                                    ->setTextHAlign('center')
-                                    ->setActionType('reply')
-                                    ->setActionBody('btn-click')
-                                    ->setText('To main menu'),
-                            ])
-                    )
+                    ->setKeyboard($testKb)
             );
         })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
