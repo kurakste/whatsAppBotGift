@@ -84,15 +84,6 @@ try {
                     ->setReceiver($event->getSender()->getId())
                     ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
-                    ->setKeyboard(
-                        (new \Viber\Api\Keyboard())
-                            ->setButtons([
-                                (new \Viber\Api\Keyboard\Button())
-                                        ->setActionType('share-phone')
-                                        ->setActionBody('reply')
-                                        ->setText('Send phone number')
-                                    ])
-                    )
             );
         })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
