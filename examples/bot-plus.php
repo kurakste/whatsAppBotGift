@@ -29,7 +29,8 @@ $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
 require_once('./keyboards/testKeyboard.php');
-
+echo('hi');
+var_dump($btns);die;
 try {
     // create bot instance
     $bot = new Bot(['token' => $apiKey]);
