@@ -29,6 +29,7 @@ $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
 require_once('./keyboards/testKeyboard.php');
+var_dump($testKb);die;
 
 try {
     // create bot instance
@@ -78,25 +79,13 @@ try {
         })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('menu method:');
-            $log->info('tracking data:'.$event->getMessage()->getTrackingData());
-            $str = $event->getMessage()->getTrackingData();
-            $log->info('str:'.$str.'|'); 
-            $data = json_decode($str, true);
-            $log->info('data is:'.var_export($data, true));
-            if (isset($data['conuter'])) {
-                $data = [];
-                $data['counter']=1; 
-            }
-            $data['counter'] = ++$data['counter'];
-            $log->info('inc data is:xxx'.$data['counter']);
-
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
                     ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
-                    ->setKeyboard($testKb)
+//                    ->setKeyboard($testKb)
             );
         })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
