@@ -86,7 +86,7 @@ try {
                     ->setText('Hi from menu')
                     ->setKeyboard(
                         (new \Viber\Api\Keyboard())
-                            ->setButtons()
+                            ->setButtons($btns)
                     )
             );
         })

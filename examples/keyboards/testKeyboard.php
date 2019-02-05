@@ -1,5 +1,5 @@
 <?php
-$buttons = [
+$btns = [
                                 (new \Viber\Api\Keyboard\Button())
                                     ->setBgColor('#8074d6')
                                     ->setTextSize('small')
