@@ -28,7 +28,7 @@ $botSender = new Sender([
 $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
-$testKb = require_once('./keyboards/testKeyboard.php');
+require_once('./keyboards/testKeyboard.php');
 
 try {
     // create bot instance
