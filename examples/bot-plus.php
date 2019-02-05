@@ -85,8 +85,9 @@ try {
                     ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
                     ->setKeyboard(
-                        $kb
-                        )
+                        (new \Viber\Api\Keyboard())
+                            ->setButtons()
+                    )
             );
         })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
