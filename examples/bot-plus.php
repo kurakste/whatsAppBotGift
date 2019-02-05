@@ -14,7 +14,6 @@ use Viber\Bot;
 use Viber\Api\Sender;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use function GuzzleHttp\json_decode;
 
 $config = require('./config.php');
 $apiKey = $config['apiKey'];
@@ -63,25 +62,37 @@ try {
                     ->setText('Thanks for subscription!')
             );
         })
+        ->onText('|заказать|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('onGetOrder' . $event->getMessage()->getText());
+            $str = $event->getMessage()->getTrackingData();
+            $log->info('Tracking data:'.$str);
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setTrackingData($str)
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText('заказываем...')
+            );
+        })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
-            $log->info('menu method');
+            $log->info('menu method:');
             $log->info('tracking data:'.$event->getMessage()->getTrackingData());
-            $log->info('message:'.$event->getMessage()->getText());
-
-            $data = json_decode($event->getMessage()->getTrackingData());
-
-            if (!isset($data['counter'])) {
+            $str = $event->getMessage()->getTrackingData();
+            $log->info('str:'.$str.'|'); 
+            $data = json_decode($str, true);
+            $log->info('data is:'.var_export($data, true));
+            if (isset($data['conuter'])) {
                 $data = [];
-                $data['counter'] = 0;
+                $data['counter']=1; 
             }
             $data['counter'] = ++$data['counter'];
-            $log->info('counter!:'.$data['counter']);
+            $log->info('inc data is:xxx'.$data['counter']);
 
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setTrackingData(json_encode(['counter'=>1]))
+                    ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
                     ->setKeyboard(
                         (new \Viber\Api\Keyboard())
@@ -111,6 +122,33 @@ try {
                                     ->setText('To main menu'),
                             ])
                     )
+            );
+        })
+        ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('onClear' . $event->getMessage()->getText());
+            $str = $event->getMessage()->getTrackingData();
+            $log->info('Tracking data:'.$str);
+            $str = '';
+            // .* - match any symbols
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setTrackingData($str)
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText('Yes, MyCap')
+            );
+        })
+        ->onText('|.*|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('onText ' . $event->getMessage()->getText());
+            $str = $event->getMessage()->getTrackingData();
+            $log->info('Tracking data:'.$str);
+            // .* - match any symbols
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setTrackingData($str)
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText('HI!')
             );
         })
         ->run();
