@@ -77,17 +77,17 @@ try {
                     ->setText('заказываем...')
             );
         })
-        ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
-            $log->info('menu method:');
-            $bot->getClient()->sendMessage(
-                (new \Viber\Api\Message\Text())
-                    ->setSender($botSender)
-                    ->setReceiver($event->getSender()->getId())
-                    ->setTrackingData(json_encode($data))
-                    ->setText('Hi from menu')
-//                    ->setKeyboard($testKb)
-            );
-        })
+//         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
+//             $log->info('menu method:');
+//             $bot->getClient()->sendMessage(
+//                 (new \Viber\Api\Message\Text())
+//                     ->setSender($botSender)
+//                     ->setReceiver($event->getSender()->getId())
+//                     ->setTrackingData(json_encode($data))
+//                     ->setText('Hi from menu')
+// //                    ->setKeyboard($testKb)
+//             );
+//         })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('onClear' . $event->getMessage()->getText());
             $str = $event->getMessage()->getTrackingData();
