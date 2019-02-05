@@ -30,31 +30,7 @@ $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 // require_once('./keyboards/testKeyboard.php');
 // echo('hi');
 // var_dump($btns);die;
-$kbrd = new \Viber\Api\Keyboard();
-        $kbrd->setButtons([
-            (new \Viber\Api\Keyboard\Button())
-                ->setBgColor('#8074d6')
-                ->setTextSize('small')
-                ->setTextHAlign('right')
-                ->setActionType('reply')
-                ->setActionBody('btn-click')
-                ->setText('Button 1'),
-
-            (new \Viber\Api\Keyboard\Button())
-                ->setBgColor('#2fa4e7')
-                ->setTextHAlign('center')
-                ->setActionType('reply')
-                ->setActionBody('btn-click')
-                ->setText('Button 2'),
-
-            (new \Viber\Api\Keyboard\Button())
-                ->setBgColor('#555555')
-                ->setTextSize('large')
-                ->setTextHAlign('left')
-                ->setActionType('reply')
-                ->setActionBody('btn-click')
-                ->setText('Button 3'),
-        ]);
+$kbrd = '';
 
 try {
     // create bot instance
@@ -110,7 +86,32 @@ try {
                     ->setReceiver($event->getSender()->getId())
                     ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
-//                    ->setKeyboard($kbrd)
+                    ->setKeyboard(
+                        (new \Viber\Api\Keyboard())->setButtons([
+                                    (new \Viber\Api\Keyboard\Button())
+                                        ->setBgColor('#8074d6')
+                                        ->setTextSize('small')
+                                        ->setTextHAlign('right')
+                                        ->setActionType('reply')
+                                        ->setActionBody('btn-click')
+                                        ->setText('Button 1'),
+
+                                    (new \Viber\Api\Keyboard\Button())
+                                        ->setBgColor('#2fa4e7')
+                                        ->setTextHAlign('center')
+                                        ->setActionType('reply')
+                                        ->setActionBody('btn-click')
+                                        ->setText('Button 2'),
+
+                                    (new \Viber\Api\Keyboard\Button())
+                                        ->setBgColor('#555555')
+                                        ->setTextSize('large')
+                                        ->setTextHAlign('left')
+                                        ->setActionType('reply')
+                                        ->setActionBody('btn-click')
+                                        ->setText('Button 3'),
+                                ])
+                    )
             );
         })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
