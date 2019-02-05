@@ -4,6 +4,7 @@ return
         ->setButtons([
             (new \Viber\Api\Keyboard\Button())
                 ->setBgColor('#8074d6')
+                ->setColumns(3)
                 ->setTextSize('small')
                 ->setTextHAlign('right')
                 ->setActionType('reply')
@@ -12,6 +13,7 @@ return
 
             (new \Viber\Api\Keyboard\Button())
                 ->setBgColor('#2fa4e7')
+                ->setColumns(3)
                 ->setTextHAlign('center')
                 ->setActionType('reply')
                 ->setActionBody('btn-click')

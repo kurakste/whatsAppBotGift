@@ -75,7 +75,7 @@ try {
             );
         })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
-            $kbrd = require_once(__DIR__.'/keyboards/testKeyboard.php');
+            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
             $log->info('menu method:');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
