@@ -27,9 +27,6 @@ $botSender = new Sender([
 $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
-$kbrd = require_once(__DIR__.'/keyboards/testKeyboard.php');
-// echo('hi');
-// var_dump($btns);die;
 
 try {
     // create bot instance
@@ -77,16 +74,15 @@ try {
                     ->setText('заказываем...')
             );
         })
-        ->onText('|menu|s', function ($event) use ($bot, $botSender, $log, $kbrd) {
+        ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
+            $kbrd = require_once(__DIR__.'/keyboards/testKeyboard.php');
             $log->info('menu method:');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
                     ->setText('Hi from menu')
-                    ->setKeyboard(
-                        (new \Viber\Api\Keyboard())->setButtons($kbrd)
-                    )
+                    ->setKeyboard($kbrd)
             );
         })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {

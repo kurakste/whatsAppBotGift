@@ -1,5 +1,7 @@
 <?php
-return  [
+return  
+    (new \Viber\Api\Keyboard())
+        ->setButtons([
             (new \Viber\Api\Keyboard\Button())
                 ->setBgColor('#8074d6')
                 ->setTextSize('small')
@@ -22,4 +24,4 @@ return  [
                 ->setActionType('reply')
                 ->setActionBody('btn-click')
                 ->setText('Button 3'),
-        ];
+        ]);
