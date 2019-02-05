@@ -84,7 +84,7 @@ try {
                     ->setReceiver($event->getSender()->getId())
                     ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
-                    ->setKeyboard($testKb)
+//                    ->setKeyboard($testKb)
             );
         })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
