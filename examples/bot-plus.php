@@ -31,7 +31,7 @@ $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 // require_once('./keyboards/testKeyboard.php');
 // echo('hi');
 // var_dump($btns);die;
-$kbrd = new \Viber\Api\Keyboard()
+$kbrd = new \Viber\Api\Keyboard();
         $kbrd->setButtons([
             (new \Viber\Api\Keyboard\Button())
                 ->setBgColor('#8074d6')
