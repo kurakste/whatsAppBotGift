@@ -80,7 +80,6 @@ try {
         })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('menu method:');
-            $log->info('btns:'.var_expor($btns));
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
