@@ -35,15 +35,11 @@ try {
     $bot = new Bot(['token' => $apiKey]);
     $bot
         // first interaction with bot - return "welcome message"
-        ->onConversation(function ($event) use ($bot, $botSender, $log, $buttons) {
+        ->onConversation(function ($event) use ($bot, $botSender, $log) {
             $log->info('onConversation handler');
             return (new \Viber\Api\Message\Text())
                 ->setSender($botSender)
-                ->setText("Hi, you can see some demo: send 'k1' or 'k2' etc.")
-                ->setKeyboard(
-                    (new \Viber\Api\Keyboard())
-                        ->setButtons($buttons)
-                );
+                ->setText("Hi, you can see some demo: send 'k1' or 'k2' etc.");
         })
         // when user subscribe to PA
         ->onSubscribe(function ($event) use ($bot, $botSender, $log) {
