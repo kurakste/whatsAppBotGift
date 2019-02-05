@@ -27,7 +27,7 @@ $botSender = new Sender([
 $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
-$kbrd = require_once('./keyboards/testKeyboard.php');
+$kbrd = require_once(__DIR__.'/keyboards/testKeyboard.php');
 // echo('hi');
 // var_dump($btns);die;
 
@@ -83,7 +83,6 @@ try {
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setTrackingData(json_encode($data))
                     ->setText('Hi from menu')
                     ->setKeyboard(
                         (new \Viber\Api\Keyboard())->setButtons($kbrd)
