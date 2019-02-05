@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
 /**
  * Before you run this example:
  * 1. install monolog/monolog: composer require monolog/monolog
