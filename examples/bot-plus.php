@@ -62,6 +62,20 @@ try {
                     ->setText('Thanks for subscription!')
             );
         })
+        ->onText('|начать|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('onStart' . $event->getMessage()->getText());
+            $str = $event->getMessage()->getTrackingData();
+            $log->info('Tracking data:'.$str);
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setTrackingData($str)
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText('Здравсвуйте! Мы занимаемся разработкой чат-ботов.'.
+                    'У нас можно узнать о том, как вы можите использовать технологии в своем бизнесе'.
+                    .'Пожалуйста воспользуйтесь меню.');
+            );
+        })
         ->onText('|заказать|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('onGetOrder' . $event->getMessage()->getText());
             $str = $event->getMessage()->getTrackingData();
