@@ -100,7 +100,7 @@ try {
                     ->setText('заказываем...')
             );
         })
-        ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
+        ->onText('|menu|s', function ($event) use ($bot, $botSender, $log, $kbrd) {
             $log->info('menu method:');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
