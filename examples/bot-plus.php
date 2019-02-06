@@ -164,15 +164,16 @@ try {
         })
         ->onText('|.*|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('onText ' . $event->getMessage()->getText());
-            $str = $event->getMessage()->getTrackingData();
-            $log->info('Tracking data:'.$str);
+            $str = "К сожалению я вас не понимаю. Давайте я вам анекдот расскажу: \n";
+            $joke = require_once(__DIR__.'/skills/gethumor.php');
+            $str = $str.$joke;
             // .* - match any symbols
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setTrackingData($str)
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setText('HI!')
+                    ->setText($str)
             );
         })
         ->run();
