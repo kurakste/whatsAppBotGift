@@ -16,7 +16,7 @@ return
                 ->setColumns(3)
                 ->setTextHAlign('center')
                 ->setActionType('reply')
-                ->setActionBody('benifits')
+                ->setActionBody('benefits')
                 ->setText('Выгоды'),
 
             (new \Viber\Api\Keyboard\Button())
