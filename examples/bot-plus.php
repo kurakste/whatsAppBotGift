@@ -88,7 +88,7 @@ try {
             $log->info('usecases method:');
             $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
             $log->info('usecases method:');
-            $str = file_get_contents(__DIR__.'/messages/vars.php');
+            $str = file_get_contents(__DIR__.'/messages/vars.txt');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
