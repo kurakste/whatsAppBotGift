@@ -163,9 +163,9 @@ try {
             );
         })
         ->onText('|.*|s', function ($event) use ($bot, $botSender, $log) {
-            $log->info('onText ' . $event->getMessage()->getText());
+            $joke = require_once(__DIR__.'/skills/humor/gethummor.php');
+            $log->info('onText ' . $joke);
             $str = "К сожалению я вас не понимаю. Давайте я вам анекдот расскажу: \n";
-            //$joke = require_once(__DIR__.'/skills/humor/gethummor.php');
             //$str = $str.$joke;
             // .* - match any symbols
             $bot->getClient()->sendMessage(
