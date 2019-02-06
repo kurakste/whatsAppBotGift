@@ -61,18 +61,6 @@ try {
                     .'Пожалуйста воспользуйтесь меню.')
             );
         })
-        ->onText('|заказать|s', function ($event) use ($bot, $botSender, $log) {
-            $log->info('onGetOrder' . $event->getMessage()->getText());
-            $str = $event->getMessage()->getTrackingData();
-            $log->info('Tracking data:'.$str);
-            $bot->getClient()->sendMessage(
-                (new \Viber\Api\Message\Text())
-                    ->setTrackingData($str)
-                    ->setSender($botSender)
-                    ->setReceiver($event->getSender()->getId())
-                    ->setText('заказываем...')
-            );
-        })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
             $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
             $log->info('menu method:');
@@ -102,6 +90,19 @@ try {
             $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
             $log->info('usecases method:');
             $str = file_get_contents(__DIR__.'/messages/benefits.txt');
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText($str)
+                    ->setKeyboard($kbrd)
+            );
+        })
+        ->onText('|connectors|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('connectors method:');
+            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
+            $log->info('usecases method:');
+            $str = file_get_contents(__DIR__.'/messages/connectors.txt');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
