@@ -87,7 +87,7 @@ try {
         })
         ->onText('|benefits|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('benefits method:');
-            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
+            $kbrd = require_once(__DIR__.'/keyboards/benifits.php');
             $log->info('usecases method:');
             $str = file_get_contents(__DIR__.'/messages/benefits.txt');
             $bot->getClient()->sendMessage(
