@@ -167,6 +167,7 @@ try {
             $log->info('onText ' . $joke);
             $str = "К сожалению я вас не понимаю. Давайте я вам анекдот расскажу: \n";
             $str = $str.$joke;
+            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
             // .* - match any symbols
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
@@ -174,6 +175,7 @@ try {
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
                     ->setText($str)
+                    ->setKeyboard($kbrd)
             );
         })
         ->run();
