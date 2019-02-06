@@ -111,6 +111,19 @@ try {
                     ->setKeyboard($kbrd)
             );
         })
+        ->onText('|effectually|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('effectually method:');
+            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
+            $log->info('usecases method:');
+            $str = file_get_contents(__DIR__.'/messages/effectually.txt');
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText($str)
+                    ->setKeyboard($kbrd)
+            );
+        })
         ->onText('|prices|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('prices method:');
             $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
