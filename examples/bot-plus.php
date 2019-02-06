@@ -74,7 +74,7 @@ try {
         })
         ->onText('|usecases|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('usecases method:');
-            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
+            $kbrd = require_once(__DIR__.'/keyboards/uscases.php');
             $log->info('usecases method:');
             $str = file_get_contents(__DIR__.'/messages/vars.txt');
             $bot->getClient()->sendMessage(
