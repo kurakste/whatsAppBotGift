@@ -49,26 +49,24 @@ try {
         })
         ->onText('|начать|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('onStart' . $event->getMessage()->getText());
-            $str = $event->getMessage()->getTrackingData();
-            $log->info('Tracking data:'.$str);
+            $str = require_once(__DIR__.'/messages/greeting.php');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setTrackingData($str)
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setText('Здравсвуйте! Мы занимаемся разработкой чат-ботов.'.
-                    'У нас можно узнать о том, как вы можите использовать технологии в своем бизнесе'
-                    .'Пожалуйста воспользуйтесь меню.')
+                    ->setText($str)
             );
         })
         ->onText('|menu|s', function ($event) use ($bot, $botSender, $log) {
             $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
             $log->info('menu method:');
+            $str = require_once(__DIR__.'/messages/greeting.php');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setText('Hi from menu')
+                    ->setText($str)
                     ->setKeyboard($kbrd)
             );
         })
