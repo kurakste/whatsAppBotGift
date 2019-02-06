@@ -85,9 +85,9 @@ try {
             );
         })
         ->onText('|usecases|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('usecases method:');
             $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
             $str = require_once(__DIR__.'/messages/vars.php');
-            $log->info('usecases method:');
             $bot->getClient()->sendMessage(
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
