@@ -93,7 +93,7 @@ try {
                 (new \Viber\Api\Message\Text())
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
-                    ->setText('str')
+                    ->setText($str)
                     ->setKeyboard($kbrd)
             );
         })
