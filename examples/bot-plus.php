@@ -27,7 +27,6 @@ $botSender = new Sender([
 $log = new Logger('bot');
 $log->pushHandler(new StreamHandler('/tmp/bot.log'));
 
-
 try {
     // create bot instance
     $bot = new Bot(['token' => $apiKey]);
@@ -82,6 +81,18 @@ try {
                     ->setSender($botSender)
                     ->setReceiver($event->getSender()->getId())
                     ->setText('Hi from menu')
+                    ->setKeyboard($kbrd)
+            );
+        })
+        ->onText('|usecases|s', function ($event) use ($bot, $botSender, $log) {
+            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
+            $str = require_once(__DIR__.'/messages/vars.php');
+            $log->info('menu method:');
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText('str')
                     ->setKeyboard($kbrd)
             );
         })

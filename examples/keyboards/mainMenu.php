@@ -8,8 +8,8 @@ return
                 ->setTextSize('small')
                 ->setTextHAlign('center')
                 ->setActionType('reply')
-                ->setActionBody('btn-click')
-                ->setText('Что умеют боты'),
+                ->setActionBody('usecases')
+                ->setText('Варианты использования'),
 
             (new \Viber\Api\Keyboard\Button())
                 ->setBgColor('#2fa4e7')
@@ -17,7 +17,7 @@ return
                 ->setTextHAlign('center')
                 ->setActionType('reply')
                 ->setActionBody('btn-click')
-                ->setText('Чем боты отличаются от приложений'),
+                ->setText('Выгоды'),
 
             (new \Viber\Api\Keyboard\Button())
                 ->setBgColor('#555555')
