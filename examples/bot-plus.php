@@ -100,7 +100,7 @@ try {
         })
         ->onText('|connectors|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('connectors method:');
-            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
+            $kbrd = require_once(__DIR__.'/keyboards/connectors.php');
             $log->info('usecases method:');
             $str = file_get_contents(__DIR__.'/messages/connectors.txt');
             $bot->getClient()->sendMessage(
