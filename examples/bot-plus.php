@@ -110,6 +110,19 @@ try {
                     ->setKeyboard($kbrd)
             );
         })
+        ->onText('|prices|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('prices method:');
+            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
+            $log->info('usecases method:');
+            $str = file_get_contents(__DIR__.'/messages/prices.txt');
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText($str)
+                    ->setKeyboard($kbrd)
+            );
+        })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('onClear' . $event->getMessage()->getText());
             $str = $event->getMessage()->getTrackingData();

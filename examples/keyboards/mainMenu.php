@@ -24,6 +24,6 @@ return
                 ->setTextSize('large')
                 ->setTextHAlign('center')
                 ->setActionType('reply')
-                ->setActionBody('btn-click')
+                ->setActionBody('prices')
                 ->setText('Сколько это может стоить?'),
         ]);
