@@ -97,6 +97,19 @@ try {
                     ->setKeyboard($kbrd)
             );
         })
+        ->onText('|benifits|s', function ($event) use ($bot, $botSender, $log) {
+            $log->info('usecases method:');
+            $kbrd = require_once(__DIR__.'/keyboards/mainMenu.php');
+            $log->info('usecases method:');
+            $str = file_get_contents(__DIR__.'/messages/vars.txt');
+            $bot->getClient()->sendMessage(
+                (new \Viber\Api\Message\Text())
+                    ->setSender($botSender)
+                    ->setReceiver($event->getSender()->getId())
+                    ->setText($str)
+                    ->setKeyboard($kbrd)
+            );
+        })
         ->onText('|clear|s', function ($event) use ($bot, $botSender, $log) {
             $log->info('onClear' . $event->getMessage()->getText());
             $str = $event->getMessage()->getTrackingData();
